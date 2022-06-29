@@ -17,8 +17,8 @@ services:
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: example
-    volumes:
-      - ./mysqldump/test_hackerpair.sql:/docker-entrypoint-initdb.d/test_hackerpair.sql
+    # volumes:
+    #   - ./mysqldump/test_hackerpair.sql:/docker-entrypoint-initdb.d/test_hackerpair.sql
     
   web:
     image: nginx:alpine
@@ -37,7 +37,7 @@ services:
     user: root
     volumes:
       - ./laravel/:/var/www/html
-      - ./angular/:/var/www/angular
+      - ./vue/:/var/www/vue
     depends_on:
       - db
     ports:
