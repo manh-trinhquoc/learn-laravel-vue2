@@ -17,7 +17,7 @@ use App\Models\Listing;
 Route::get('/', function () {
     $listings = Listing::all();
     foreach ($listings as $listing) {
-        var_dump($listing->amenity_wifi);
+        // var_dump($listing->amenity_wifi);
     }
 
     return view('welcome');
