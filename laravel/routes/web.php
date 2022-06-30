@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +14,5 @@ use App\Models\Listing;
 */
 
 Route::get('/', function () {
-    $listings = Listing::all();
-    foreach ($listings as $listing) {
-        // var_dump($listing->amenity_wifi);
-    }
-
-    return view('welcome');
+    return view('app');
 });

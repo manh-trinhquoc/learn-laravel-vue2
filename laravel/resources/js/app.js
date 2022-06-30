@@ -1,9 +1,60 @@
-require('./bootstrap');
+import Vue from 'vue';
 
-window.Vue = require('vue');
+import sample from './data';
 
-// Vue.component('example', require('./components/Example.vue'));
+console.log('test');
 
-const app = new Vue({
-    el: '#app'
+var app = new Vue({
+    el: '#app',
+    data: {
+        title: sample.title,
+        address: sample.address,
+        about: sample.about,
+        headerImageStyle: {
+            'background-image': 'url(images/header.jpg)'
+        },
+        amenities: sample.amenities,
+        prices: sample.prices,
+        contracted1: true,
+        modalOpen: false
+    },
+    watch: {
+        modalOpen: function () {
+            var className = 'modal-open';
+            if (this.modalOpen) {
+                document.body.classList.add(className);
+            } else {
+                document.body.classList.remove(className);
+            }
+        }
+    },
+    methods: {
+        escapeKeyListener: function (evt) {
+            // console.group('keyup event');
+            // console.log(this.modalOpen);
+            // console.log(evt);
+            // console.groupEnd();
+            if (evt.keyCode === 27 && this.modalOpen) {
+                this.modalOpen = false;
+            }
+        }
+    },
+
+    created: function () {
+        // document.addEventListener('keyup', function (evt) {
+        //     console.group('keyup event');
+        //     console.log(this.modalOpen);
+        //     console.log(evt);
+        //     console.groupEnd();
+        //     if (evt.keyCode === 27 && this.modalOpen) {
+        //         this.modalOpen = false;
+        //     }
+        // })
+        document.addEventListener('keyup', this.escapeKeyListener);
+    },
+    destroyed: function () {
+        document.removeEventListener('keyup', this.escapeKeyListener);
+    }
 });
+
+console.log(app);
