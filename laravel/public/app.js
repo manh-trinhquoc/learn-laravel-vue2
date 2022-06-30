@@ -21,5 +21,32 @@ var app = new Vue({
                 document.body.classList.remove(className);
             }
         }
+    },
+    methods: {
+        escapeKeyListener: function (evt) {
+            // console.group('keyup event');
+            // console.log(this.modalOpen);
+            // console.log(evt);
+            // console.groupEnd();
+            if (evt.keyCode === 27 && this.modalOpen) {
+                this.modalOpen = false;
+            }
+        }
+    },
+
+    created: function () {
+        // document.addEventListener('keyup', function (evt) {
+        //     console.group('keyup event');
+        //     console.log(this.modalOpen);
+        //     console.log(evt);
+        //     console.groupEnd();
+        //     if (evt.keyCode === 27 && this.modalOpen) {
+        //         this.modalOpen = false;
+        //     }
+        // })
+        document.addEventListener('keyup', this.escapeKeyListener);
+    },
+    destroyed: function () {
+        document.removeEventListener('keyup', this.escapeKeyListener);
     }
 });
