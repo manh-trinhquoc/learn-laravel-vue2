@@ -1,5 +1,5 @@
+require('dotenv').config();
 const mix = require('laravel-mix');
-
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -20,5 +20,21 @@ mix.webpackConfig({
 })
 
 mix.js('resources/js/app.js', 'public/js')
-    .styles('resources/css/style.css', 'public/css/style.css')
-    .sourceMaps();
+    .styles(
+        [
+            'node_modules/open-sans-all/css/open-sans.css',
+            'node_modules/font-awesome/css/font-awesome.css',
+            'resources/css/style.css'
+        ],
+        'public/css/style.css'
+    )
+    .copy('node_modules/open-sans-all/fonts', 'public/fonts')
+    .copy('node_modules/font-awesome/fonts', 'public/fonts')
+    .copy('resources/images', 'public/images')
+    .sourceMaps()
+    .browserSync({
+        // proxy: process.env.APP_URL,
+        proxy: "http://host.docker.internal:89/",
+        open: false,
+        port: 8000
+    });

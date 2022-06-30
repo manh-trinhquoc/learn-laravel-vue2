@@ -56,5 +56,3 @@ var app = new Vue({
         document.removeEventListener('keyup', this.escapeKeyListener);
     }
 });
-
-console.log(app);

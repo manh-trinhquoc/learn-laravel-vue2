@@ -46,7 +46,8 @@ RUN apt-get -y install google-chrome-stable
 
 # cài angular cli
 RUN npm install -g @angular/cli@latest
-
+# Cài yarn cho browserSyn
+RUN npm install --global yarn
 
 WORKDIR /var/www/html
 
