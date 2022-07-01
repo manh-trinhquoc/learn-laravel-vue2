@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +19,4 @@ Route::get('/', function () {
     return view('app');
 });
 
-Route::get('/listing/{listing}', function (Listing $listing) {
-    $model = $listing->toArray();
-
-    return view('app', ['model' => $model]);
-});
+Route::get('/listing/{listing}', [Controllers\ListingController::class, 'getListingWeb']);

@@ -62,9 +62,7 @@
         <div id="modal" v-bind:class="{ show : modalOpen }">
             <button v-on:click="modalOpen = false" class="modal-close"> &times;</button>
             <div class="modal-content">
-                @endverbatim
-                <img src="{{ asset('/images/header.jpg') }}" alt="">
-                @verbatim
+                <img v-bind:src="images[0]" alt="">
             </div>
         </div>
     </div>

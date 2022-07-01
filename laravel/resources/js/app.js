@@ -8,12 +8,13 @@ let model = window.vuebnb_listing_model;
 console.log(model.amenity_breakfast);
 console.log(model);
 model = populateAmenitiesAndPrices(model);
+console.log(model);
 
 var app = new Vue({
     el: '#app',
     data: Object.assign(model, {
         headerImageStyle: {
-            'background-image': 'url(images/header.jpg)'
+            'background-image': `url(${model.images[0]})`
         },
         contracted1: true,
         modalOpen: false
