@@ -63,7 +63,7 @@
             <button v-on:click="modalOpen = false" class="modal-close"> &times;</button>
             <div class="modal-content">
                 <div class="modal-content">
-                    <image-carousel></image-carousel>
+                    <image-carousel :images="images"></image-carousel>
                 </div>
             </div>
         </div>
