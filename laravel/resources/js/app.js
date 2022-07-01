@@ -10,6 +10,39 @@ console.log(model);
 model = populateAmenitiesAndPrices(model);
 console.log(model);
 
+Vue.component('image-carousel', {
+    template: `
+        <div class="image-carousel">
+            <img v-bind:src="image"/>
+            <div class="controls">
+                <carousel-control></carousel-control>
+                <carousel-control></carousel-control>
+            </div>
+        </div>`,
+    data() {
+        return {
+            images: [
+                '/images/1/Image_1.jpg',
+                '/images/1/Image_2.jpg',
+                '/images/1/Image_3.jpg',
+                '/images/1/Image_4.jpg'
+            ],
+            index: 0
+        }
+    },
+    computed: {
+        image() {
+            return this.images[this.index];
+        }
+    },
+    components: {
+        'carousel-control': {
+            template: `<i class="carousel-control fa fa-2x fa-chevron-left">            </i>`
+        }
+    }
+});
+
+
 var app = new Vue({
     el: '#app',
     data: Object.assign(model, {

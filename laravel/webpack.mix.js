@@ -16,7 +16,10 @@ mix.webpackConfig({
         alias: {
             'vue$': 'vue/dist/vue.common.js'
         }
-    }
+    },
+
+    devtool: 'source-map'
+
 })
 
 mix.js('resources/js/app.js', 'public/js')
@@ -26,12 +29,18 @@ mix.js('resources/js/app.js', 'public/js')
             'node_modules/font-awesome/css/font-awesome.css',
             'resources/css/style.css'
         ],
-        'public/css/style.css'
+        'public/css/style.css',
+        // {
+        //     outputStyle: 'compressed',
+        //     sourceMap: true,
+        //     outFile: './map',
+        //     omitSourceMapUrl: true
+        // }
     )
+    .sourceMaps()
     .copy('node_modules/open-sans-all/fonts', 'public/fonts')
     .copy('node_modules/font-awesome/fonts', 'public/fonts')
     .copy('resources/images', 'public/images')
-    .sourceMaps()
     .browserSync({
         // proxy: process.env.APP_URL,
         proxy: "http://host.docker.internal:89/",
