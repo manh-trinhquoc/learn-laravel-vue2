@@ -1,5 +1,8 @@
 require('dotenv').config();
 const mix = require('laravel-mix');
+const {
+    VueLoaderPlugin
+} = require('vue-loader')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -18,11 +21,21 @@ mix.webpackConfig({
         }
     },
 
-    devtool: 'source-map'
-
+    devtool: 'source-map',
+    // module: {
+    //     rules: [{
+    //         test: /\.vue$/,
+    //         loader: 'vue-loader'
+    //     }]
+    // },
+    // plugins: [
+    //     // make sure to include the plugin!
+    //     new VueLoaderPlugin()
+    // ]
 })
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue()
     .styles(
         [
             'node_modules/open-sans-all/css/open-sans.css',
