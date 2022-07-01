@@ -1,23 +1,23 @@
 import Vue from 'vue';
+import "core-js/features/object/assign";
+import {
+    populateAmenitiesAndPrices
+} from './helpers';
 
-import sample from './data';
-
-console.log('test');
+let model = window.vuebnb_listing_model;
+console.log(model.amenity_breakfast);
+console.log(model);
+model = populateAmenitiesAndPrices(model);
 
 var app = new Vue({
     el: '#app',
-    data: {
-        title: sample.title,
-        address: sample.address,
-        about: sample.about,
+    data: Object.assign(model, {
         headerImageStyle: {
             'background-image': 'url(images/header.jpg)'
         },
-        amenities: sample.amenities,
-        prices: sample.prices,
         contracted1: true,
         modalOpen: false
-    },
+    }),
     watch: {
         modalOpen: function () {
             var className = 'modal-open';

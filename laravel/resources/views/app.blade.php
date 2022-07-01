@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Vuebnb</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <script type="text/javascript">
+        window.vuebnb_listing_model = {!! json_encode($model) !!};
+    </script>
+
 </head>
 
 <body>
@@ -58,7 +62,9 @@
         <div id="modal" v-bind:class="{ show : modalOpen }">
             <button v-on:click="modalOpen = false" class="modal-close"> &times;</button>
             <div class="modal-content">
-                <img src="images/header.jpg" alt="">
+                @endverbatim
+                <img src="{{ asset('/images/header.jpg') }}" alt="">
+                @verbatim
             </div>
         </div>
     </div>
