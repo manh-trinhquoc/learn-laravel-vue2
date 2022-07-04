@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Vuebnb</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css">
     <script type="text/javascript">
         window.vuebnb_listing_model = {!! json_encode($model) !!};
     </script>
@@ -21,7 +22,7 @@
     @verbatim
     <div id="app">
         <div class="header">
-            <div class="header-img" v-bind:style="headerImageStyle" v-on:click="modalOpen = true">
+            <div class="header-img" v-bind:style="headerImageStyle" v-on:click="openModal">
                 <button class="view-photos">View Photos</button>
             </div>
         </div>
@@ -59,14 +60,9 @@
                 </div>
             </div>
         </div>
-        <div id="modal" v-bind:class="{ show : modalOpen }">
-            <button v-on:click="modalOpen = false" class="modal-close"> &times;</button>
-            <div class="modal-content">
-                <div class="modal-content">
-                    <image-carousel :images="images"></image-carousel>
-                </div>
-            </div>
-        </div>
+        <modal-window ref="imagemodal">
+            <image-carousel :images="images"></image-carousel>
+        </modal-window>
     </div>
     @endverbatim
     <script src="{{ asset('js/app.js') }}"></script>

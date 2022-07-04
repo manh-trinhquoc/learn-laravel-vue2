@@ -11,6 +11,7 @@ model = populateAmenitiesAndPrices(model);
 console.log(model);
 
 import ImageCarousel from '../components/ImageCarousel.vue';
+import ModalWindow from '../components/ModalWindow.vue';
 
 
 var app = new Vue({
@@ -20,46 +21,15 @@ var app = new Vue({
             'background-image': `url(${model.images[0]})`
         },
         contracted1: true,
-        modalOpen: false
-    }),
-    watch: {
-        modalOpen: function () {
-            var className = 'modal-open';
-            if (this.modalOpen) {
-                document.body.classList.add(className);
-            } else {
-                document.body.classList.remove(className);
-            }
-        }
-    },
-    methods: {
-        escapeKeyListener: function (evt) {
-            // console.group('keyup event');
-            // console.log(this.modalOpen);
-            // console.log(evt);
-            // console.groupEnd();
-            if (evt.keyCode === 27 && this.modalOpen) {
-                this.modalOpen = false;
-            }
-        }
-    },
 
-    created: function () {
-        // document.addEventListener('keyup', function (evt) {
-        //     console.group('keyup event');
-        //     console.log(this.modalOpen);
-        //     console.log(evt);
-        //     console.groupEnd();
-        //     if (evt.keyCode === 27 && this.modalOpen) {
-        //         this.modalOpen = false;
-        //     }
-        // })
-        document.addEventListener('keyup', this.escapeKeyListener);
-    },
-    destroyed: function () {
-        document.removeEventListener('keyup', this.escapeKeyListener);
+    }),
+    methods: {
+        openModal() {
+            this.$refs.imagemodal.modalOpen = true;
+        },
     },
     components: {
-        ImageCarousel
+        ImageCarousel,
+        ModalWindow
     }
 });

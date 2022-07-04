@@ -35,7 +35,9 @@ mix.webpackConfig({
 })
 
 mix.js('resources/js/app.js', 'public/js')
-    .vue()
+    .vue({
+        extractStyles: 'public/css/vue-style.css'
+    })
     .styles(
         [
             'node_modules/open-sans-all/css/open-sans.css',
