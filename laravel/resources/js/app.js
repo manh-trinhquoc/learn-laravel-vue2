@@ -13,6 +13,7 @@ console.log(model);
 import ImageCarousel from '../components/ImageCarousel.vue';
 import ModalWindow from '../components/ModalWindow.vue';
 import HeaderImage from '../components/HeaderImage.vue';
+import FeatureList from '../components/FeatureList.vue';
 
 
 var app = new Vue({
@@ -28,6 +29,7 @@ var app = new Vue({
     components: {
         ImageCarousel,
         ModalWindow,
-        HeaderImage
+        HeaderImage,
+        FeatureList
     }
 });

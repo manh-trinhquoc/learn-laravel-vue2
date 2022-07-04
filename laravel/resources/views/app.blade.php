@@ -35,26 +35,17 @@
             </div>
             <div class="lists">
                 <hr>
-                <div class="amenities ">
-                    <div class="title"><strong>Amenities</strong></div>
-                    <div class="content list">
-                        <div class="list-item" v-for="amenity in amenities">
-                            <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
-                            <span>@{{ amenity.title }}</span>
-                        </div>
+                <feature-list title="Amenities">
+                    <div class="list-item" v-for="amenity in amenities">
+                        <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
+                        <span>@{{ amenity.title }}</span>
                     </div>
-                </div>
-                <div class="prices">
-                    <div class="title">
-                        <strong>Prices</strong>
+                </feature-list>
+                <feature-list title="Prices">
+                    <div class="list-item" v-for="price in prices">
+                        {{ price.title }} : <strong> {{ price.value }} </strong>
                     </div>
-                    <div class="content list">
-                        <div class="list-item" v-for="price in prices">
-                            {{ price.title }} : <strong> {{ price.value }} </strong>
-                        </div>
-
-                    </div>
-                </div>
+                </feature-list>
             </div>
         </div>
         <modal-window ref="imagemodal">
