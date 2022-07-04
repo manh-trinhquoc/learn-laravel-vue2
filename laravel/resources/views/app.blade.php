@@ -35,15 +35,16 @@
             </div>
             <div class="lists">
                 <hr>
-                <div class="amenities list">
-                    <div v-for="amenity in amenities" v-bind:key="amenity.id">
-                        <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
-                        <span>
-                            {{ amenity.title }}
-                        </span>
+                <div class="amenities ">
+                    <div class="title"><strong>Amenities</strong></div>
+                    <div class="content list">
+                        <div class="list-item" v-for="amenity in amenities">
+                            <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
+                            <span>@{{ amenity.title }}</span>
+                        </div>
                     </div>
                 </div>
-                <div class="prices ">
+                <div class="prices">
                     <div class="title">
                         <strong>Prices</strong>
                     </div>
