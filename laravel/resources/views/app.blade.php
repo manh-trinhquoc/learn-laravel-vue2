@@ -30,8 +30,7 @@
             <hr>
             <div class="about">
                 <h3>About this listing</h3>
-                <p v-bind:class="{ contracted: contracted1 }">{{ about }}</p>
-                <button class="more" v-on:click="contracted1 = false" v-if="contracted1">More</button>
+                <expandable-text> {{ about }} </expandable-text>
             </div>
             <div class="lists">
                 <hr>
@@ -42,9 +41,9 @@
                     </template>
                 </feature-list>
                 <feature-list title="Prices" v-bind:items="prices">
-                    <div class="list-item" v-for="price in prices">
+                    <template slot-scope="price">
                         {{ price.title }} : <strong> {{ price.value }} </strong>
-                    </div>
+                    </template>
                 </feature-list>
             </div>
         </div>

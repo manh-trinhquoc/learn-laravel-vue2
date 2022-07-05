@@ -146,4 +146,47 @@ hr {
 
 
 
+.about p[data-v-212c54f2] {
+    white-space: pre-wrap;
+}
+.about p.contracted[data-v-212c54f2] {
+    height: 150px;
+    overflow: hidden;
+}
+button[data-v-212c54f2] {
+    border-radius: 4px;
+    border: 1px solid #c4c4c4;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    line-height: 1.43;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
+    white-space: nowrap;
+    cursor: pointer;
+    background: white;
+    color: #484848;
+    padding: 7px 18px;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 0;
+}
+.about button.more[data-v-212c54f2] {
+    background: transparent;
+    border: 0;
+    color: #008489;
+    padding: 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+.about button.more[data-v-212c54f2]:hover,
+.about button.more[data-v-212c54f2]:focus,
+.about button.more[data-v-212c54f2]:active {
+    text-decoration: underline;
+    outline: none;
+}
+
+
+
 /*# sourceMappingURL=vue-style.css.map*/
