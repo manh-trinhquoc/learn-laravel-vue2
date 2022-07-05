@@ -35,13 +35,13 @@
             </div>
             <div class="lists">
                 <hr>
-                <feature-list title="Amenities">
-                    <div class="list-item" v-for="amenity in amenities">
+                <feature-list title="Amenities" v-bind:items="amenities">
+                    <template slot-scope="amenity">
                         <i class="fa fa-lg" v-bind:class="amenity.icon"></i>
                         <span>@{{ amenity.title }}</span>
-                    </div>
+                    </template>
                 </feature-list>
-                <feature-list title="Prices">
+                <feature-list title="Prices" v-bind:items="prices">
                     <div class="list-item" v-for="price in prices">
                         {{ price.title }} : <strong> {{ price.value }} </strong>
                     </div>
