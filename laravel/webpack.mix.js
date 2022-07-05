@@ -17,7 +17,8 @@ const {
 mix.webpackConfig({
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.common.js'
+            // 'vue$': 'vue/dist/vue.common.js'
+            'vue$': 'vue/dist/vue.runtime.esm.js'
         }
     },
 
