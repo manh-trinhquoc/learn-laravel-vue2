@@ -15,8 +15,6 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', [Controllers\ListingController::class, 'getHomeWeb']);
 
 Route::get('/listing/{listing}', [Controllers\ListingController::class, 'getListingWeb']);

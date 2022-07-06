@@ -48,8 +48,8 @@
         populateAmenitiesAndPrices
     } from '../js/helpers';
 
-    let model = window.vuebnb_listing_model;
-    model = populateAmenitiesAndPrices(model);
+    let serverData = window.vuebnb_server_data;
+    let model = populateAmenitiesAndPrices(serverData.listing);
 
     import ImageCarousel from '../components/ImageCarousel.vue';
     import ModalWindow from '../components/ModalWindow.vue';

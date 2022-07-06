@@ -10,31 +10,45 @@ class ListingController extends Controller
     public function getListingApi(Listing $listing)
     {
         // return $listing->toJson();
-        $model = $listing->toArray();
-        $model = $this->addImageUrls($model, $listing->id);
+        $data = $this->getListing($listing);
 
-        return response()->json($model);
+        return response()->json($data);
     }
 
     public function getListingWeb(Listing $listing)
     {
-        $model = $listing->toArray();
-        $model = $this->addImageUrls($model, $listing->id);
-        // var_dump($model);
+        $data = $this->getListing($listing);
 
         return view('app', [
-            'model' => $model
+            'data' => $data
         ]);
     }
 
-    private function addImageUrls($model, $id)
+    public function getHomeWeb()
     {
+        $collection = Listing::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        $collection->transform(function ($listing) {
+            $listing->thumb = asset('images/' . $listing->id . '/Image_1_thumb.jpg');
+
+            return $listing;
+        });
+        $data = collect(['listings' => $collection->toArray()]);
+        var_dump($data->toArray());
+
+        return view('app', ['data' => $data]);
+    }
+
+    private function getListing($listing)
+    {
+        $model = $listing->toArray();
         for ($i = 1; $i <= 4; $i++) {
             $model['image_' . $i] = asset(
-                'images/' . $id . '/Image_' . $i . '.jpg'
+                'images/' . $listing->id . '/Image_' . $i . '.jpg'
             );
         }
 
-        return $model;
+        return collect(['listing' => $model]);
     }
 }
