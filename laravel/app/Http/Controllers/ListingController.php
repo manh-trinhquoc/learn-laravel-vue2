@@ -15,16 +15,17 @@ class ListingController extends Controller
         return response()->json($data);
     }
 
-    public function getListingWeb(Listing $listing)
+    public function getListingWeb(Listing $listing, Request $request)
     {
         $data = $this->getListing($listing);
+        $data = $this->addMetaData($data, $request);
 
         return view('app', [
             'data' => $data
         ]);
     }
 
-    public function getHomeWeb()
+    public function getHomeWeb(Request $request)
     {
         $collection = Listing::all([
             'id', 'address', 'title', 'price_per_night'
@@ -35,7 +36,7 @@ class ListingController extends Controller
             return $listing;
         });
         $data = collect(['listings' => $collection->toArray()]);
-        var_dump($data->toArray());
+        $data = $this->addMetaData($data, $request);
 
         return view('app', ['data' => $data]);
     }
@@ -50,5 +51,12 @@ class ListingController extends Controller
         }
 
         return collect(['listing' => $model]);
+    }
+
+    private function addMetaData($collection, $request)
+    {
+        return $collection->merge([
+            'path' => $request->getPathInfo()
+        ]);
     }
 }
