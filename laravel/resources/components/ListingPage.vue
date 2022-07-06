@@ -1,7 +1,7 @@
 <template>
     <div>
         <header-image v-bind:image-url="images[0]" v-on:click="openModal"></header-image>
-        <div class="container">
+        <div class="listing-container">
             <div class="heading">
                 <h1>{{ title }}</h1>
                 <p>{{ address }}</p>
@@ -32,7 +32,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
     .about {
         margin-top: 2em;
     }
