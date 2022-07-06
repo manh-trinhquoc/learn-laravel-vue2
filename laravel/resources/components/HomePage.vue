@@ -14,18 +14,42 @@
     } from '../js/helpers';
 
     import ListingSummary from './ListingSummary.vue';
+    import axios from 'axios';
+    import routeMixin from '../js/route-mixin';
 
-    let serverData = window.vuebnb_server_data;
-    let listing_groups = groupByCountry(serverData.listings);
     export default {
+        mixins: [routeMixin],
         data() {
             return {
-                listing_groups
+                listing_groups: []
             }
+        },
+        methods: {
+            assignData({
+                listings
+            }) {
+                this.listing_groups = groupByCountry(listings);
+            },
         },
         components: {
             ListingSummary
-        }
+        },
+        // beforeRouteEnter(to, from, next) {
+        //     let serverData = window.vuebnb_server_data;
+        //     if (to.path === serverData.path) {
+        //         console.log('to.path == serverData.path');
+        //         let listing_groups = groupByCountry(serverData.listings);
+        //         next(component => component.listing_groups = listing_groups);
+        //     } else {
+        //         console.log('need to get data with ajax');
+        //         axios.get('/api/').then(({
+        //             data
+        //         }) => {
+        //             let listing_groups = groupByCountry(data.listings);
+        //             next(component => component.listing_groups = listing_groups);
+        //         });
+        //     }
+        // }
     }
 
 </script>

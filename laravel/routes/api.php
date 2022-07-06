@@ -20,8 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::get('listing/{listing}', function (Listing $listing) {
-//     return $listing->toJson();
-// });
+Route::get('/', [Controllers\ListingController::class, 'getHomeApi']);
 
 Route::get('listing/{listing}', [Controllers\ListingController::class, 'getListingApi']);

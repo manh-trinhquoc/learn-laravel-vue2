@@ -57,14 +57,29 @@
     import FeatureList from '../components/FeatureList.vue';
     import ExpandableText from '../components/ExpandableText.vue';
 
+    import routeMixin from '../js/route-mixin';
+
     export default {
+        mixins: [routeMixin],
         data() {
-            return Object.assign(model);
+            return {
+                title: null,
+                about: null,
+                address: null,
+                amenities: [],
+                prices: [],
+                images: []
+            }
         },
         methods: {
             openModal() {
                 this.$refs.imagemodal.modalOpen = true;
             },
+            assignData({
+                listing
+            }) {
+                Object.assign(this.$data, populateAmenitiesAndPrices(listing));
+            }
         },
         components: {
             ImageCarousel,

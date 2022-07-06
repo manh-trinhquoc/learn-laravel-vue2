@@ -15,6 +15,29 @@ class ListingController extends Controller
         return response()->json($data);
     }
 
+    public function getHomeApi()
+    {
+        $data = $this->getListingSummaries();
+
+        return response()->json($data);
+    }
+
+    private function getListingSummaries()
+    {
+        $collection = Listing::all([
+            'id', 'address', 'title', 'price_per_night'
+        ]);
+        $collection->transform(function ($listing) {
+            $listing->thumb = asset(
+                'images/' . $listing->id . '/Image_1_thumb.jpg'
+            );
+
+            return $listing;
+        });
+
+        return collect(['listings' => $collection->toArray()]);
+    }
+
     public function getListingWeb(Listing $listing, Request $request)
     {
         $data = $this->getListing($listing);
@@ -27,15 +50,7 @@ class ListingController extends Controller
 
     public function getHomeWeb(Request $request)
     {
-        $collection = Listing::all([
-            'id', 'address', 'title', 'price_per_night'
-        ]);
-        $collection->transform(function ($listing) {
-            $listing->thumb = asset('images/' . $listing->id . '/Image_1_thumb.jpg');
-
-            return $listing;
-        });
-        $data = collect(['listings' => $collection->toArray()]);
+        $data = $this->getListingSummaries();
         $data = $this->addMetaData($data, $request);
 
         return view('app', ['data' => $data]);
